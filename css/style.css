@@ -1,0 +1,29 @@
+* {
+  font-family: monospace;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+div {
+  margin: 0.6em auto;
+}
+
+canvas {
+  margin: 1em auto;
+}
+
+#entry {
+  width: 20ch;
+}
+
+input {
+  transition: all 0.05s;
+  border: 0px;
+  border-bottom: 1px solid black;
+  outline: 0;
+  font-size: 1.1em;
+}
