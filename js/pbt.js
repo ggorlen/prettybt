@@ -22,7 +22,7 @@ const drawBinaryTree = (root, ctx, canvas, size=15) => {
   let y = size * 2;
   const q = [[root, depth, null]];
 
-  canvas.width = 2 ** depth * size + (size * 2);
+  canvas.width = 2 ** depth * size + size * 2;
   canvas.height = depth * size * 4;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";

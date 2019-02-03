@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Binary Tree Drawer</title>
+    <title>Pretty Binary Tree</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon"/>
@@ -10,34 +10,36 @@
   <body>
 
     <div>
-      Enter binary tree as comma delimited array with<br> `<code>null</code>` for absent
-      nodes or <a id="random-tree" href="javascript:void(0);">make random tree</a>:
+      Enter binary tree as comma-delimited array with<br> `<code>null</code>` for absent
+      nodes or <a id="random-tree" href="javascript:void(0);">make a random tree</a>:
     </div>
     <div>[<input id="entry">] &nbsp; size: <input size=1 id="size" value="15"></div>
 
-    <script src="js/btdrawer.js"></script>
+    <script src="js/pbt.js"></script>
     <script>
     
+      const clamp = (n, lo=7, hi=40) => Math.min(hi, Math.max(n, lo));
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
       const sizeElem = document.querySelector("#size");
-      const inputElem = document.querySelector("input");
-      document.body.appendChild(canvas);
-      drawBinaryTree(randomTree(), ctx, canvas);
       let root = randomTree();
+      document.body.appendChild(canvas);
+      drawBinaryTree(root, ctx, canvas);
       
       document.querySelector("#random-tree").addEventListener("click", e => {
         root = randomTree();
-        drawBinaryTree(root, ctx, canvas, Math.min(40, Math.max(+sizeElem.value, 5)));
+        drawBinaryTree(root, ctx, canvas, clamp(+sizeElem.value));
       });
-      inputElem.addEventListener("keyup", e => {
+
+      document.querySelector("#entry").addEventListener("keyup", e => {
         e.target.style.width = Math.max(e.target.value.length, 20) + "ch";
         root = treeFromString(e.target.value);
-        drawBinaryTree(root, ctx, canvas, Math.min(40, Math.max(+sizeElem.value, 7)));
+        drawBinaryTree(root, ctx, canvas, clamp(+sizeElem.value));
       });
+
       sizeElem.addEventListener("keyup", e => {
         e.target.style.width = Math.max(e.target.value.length, 2) + "ch";
-        drawBinaryTree(root, ctx, canvas, Math.min(40, Math.max(+sizeElem.value, 7)));
+        drawBinaryTree(root, ctx, canvas, clamp(+sizeElem.value));
       });
 
     </script>
