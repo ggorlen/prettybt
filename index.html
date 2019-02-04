@@ -22,16 +22,19 @@
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
       const sizeElem = document.querySelector("#size");
+      const entryElem = document.querySelector("#entry");
       let root = randomTree();
-      document.body.appendChild(canvas);
+      entryElem.value = arrayFromTree(root).toString();
       drawBinaryTree(root, ctx, canvas);
+      document.body.appendChild(canvas);
       
       document.querySelector("#random-tree").addEventListener("click", e => {
         root = randomTree();
+        entryElem.value = arrayFromTree(root).toString();
         drawBinaryTree(root, ctx, canvas, clamp(+sizeElem.value));
       });
 
-      document.querySelector("#entry").addEventListener("keyup", e => {
+      entryElem.addEventListener("keyup", e => {
         e.target.style.width = Math.max(e.target.value.length, 20) + "ch";
         root = treeFromString(e.target.value);
         drawBinaryTree(root, ctx, canvas, clamp(+sizeElem.value));

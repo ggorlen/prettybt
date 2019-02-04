@@ -29,7 +29,7 @@ const drawBinaryTree = (root, ctx, canvas, size=15) => {
   ctx.strokeStyle = "#666";
   ctx.lineWidth = 2;
   
-  while (depth >= 0 ) {
+  while (depth >= 0) {
     const [currNode, currDepth] = q.shift();
 
     if (currDepth < depth) {
@@ -120,6 +120,16 @@ const treeFromString = s => {
   const root = new TreeNode(treeArray[1]);
   treeFromArray(root, treeArray);
   return treeArray.length > 1 && treeArray[1] ? root : null;
+};
+
+const arrayFromTree = (root, a=[], i=0) => {
+  if (root) {
+    a[i] = root.val;
+    arrayFromTree(root.left, a, i * 2 + 1);
+    arrayFromTree(root.right, a, i * 2 + 2);
+  }
+
+  return a;
 };
 
 const treeFromArray = (root, a, i=1) => {
