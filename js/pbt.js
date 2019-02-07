@@ -61,7 +61,7 @@ const drawBinaryTree = (root, ctx, canvas, size=15) => {
           ctx.fillStyle = "#fff";
           ctx.fill();
           ctx.fillStyle = "#000";
-          ctx.font = `bold ${size - ("" + node.val).length}px Courier`;
+          ctx.font = `bold ${size - ("" + node.val).length}px Courier New`;
           ctx.fillText(node.val, x + 1, y + 1);
         }
 

@@ -20,6 +20,10 @@ canvas {
   width: 20ch;
 }
 
+#size {
+  text-align: center;
+}
+
 input {
   transition: all 0.05s;
   border: 0px;
