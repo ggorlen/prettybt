@@ -6,5 +6,9 @@ string to visual binary tree.
 
 ### todo
 
+- accept JSON
 - handle sparse wide/deep trees better; find a way to squish 'em
 - add horizontal/vertical output support
+- namespace functions
+- simplify params to `drawBinaryTree`
+- make npm package?
