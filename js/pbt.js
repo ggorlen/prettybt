@@ -1,26 +1,26 @@
 "use strict";
 
-const PrettyBT = (function () {
+var PrettyBT = (function () {
   function TreeNode(val, left, right) {
     this.val = val;
     this.left = left;
     this.right = right;
   }
   
-  const treeHeight = (root, height=0) => 
-    root ? 1 + Math.max(
+  function treeHeight(root, height=0) {
+    return root ? 1 + Math.max(
       treeHeight(root.left, height), 
       treeHeight(root.right, height)
     ) : height
-  ;
+  };
   
-  const drawBinaryTree = (canvas, root, size=15) => {
-    const ctx = canvas.getContext("2d");
-    let depth = treeHeight(root);
-    let level = [];
-    let x = size;
-    let y = size * 2;
-    const q = [[root, depth, null]];
+  function drawBinaryTree(canvas, root, size=15, background="#fff") {
+    var ctx = canvas.getContext("2d");
+    var depth = treeHeight(root);
+    var level = [];
+    var x = size;
+    var y = size * 2;
+    var q = [[root, depth, null]];
   
     canvas.width = 2 ** depth * size + size * 2;
     canvas.height = depth * size * 4;
@@ -32,13 +32,15 @@ const PrettyBT = (function () {
     ctx.lineWidth = 2;
     
     while (depth >= 0) {
-      const [currNode, currDepth] = q.shift();
+      var node = q.shift();
+      var currNode = node[0];
+      var currDepth = node[1];
   
       if (currDepth < depth) {
         depth = currDepth;
         x += 2 ** depth * size;
   
-        for (const node of level) {
+        level.forEach(function (node) {
           if (node) {
             ctx.lineWidth = 1;
   
@@ -63,12 +65,12 @@ const PrettyBT = (function () {
             ctx.fillStyle = "#fff";
             ctx.fill();
             ctx.fillStyle = "#000";
-            ctx.font = `bold ${size - ("" + node.val).length}px Courier New`;
+            ctx.font = "bold " + (size - ("" + node.val).length) + "px Courier New";
             ctx.fillText(node.val, x + 1, y + 1);
           }
   
           x += 2 ** (depth + 1) * size;
-        }
+        });
   
         x = size;
         y += size * 4;
@@ -88,13 +90,13 @@ const PrettyBT = (function () {
     }
   };
   
-  const randomTree = (min=3, max=15, maxVal=120) => {
-    const root = new TreeNode(~~(Math.random() * maxVal));
-    let n = 1;
+  function randomTree(min=3, max=15, maxVal=120) {
+    var root = new TreeNode(~~(Math.random() * maxVal));
+    var n = 1;
   
     while ((Math.random() > 0.1 || n < min) && n++ < max) {
-      let curr = root;
-      let prev = curr;
+      var curr = root;
+      var prev = curr;
   
       while (curr) {
         prev = curr;
@@ -112,19 +114,19 @@ const PrettyBT = (function () {
     return root;
   };
   
-  const treeFromString = s => {
-    const treeArray = s
+  function treeFromString(s) {
+    var treeArray = s
       .replace(/[\[|\]]/g, "")
       .split(",")
       .map(e => /(null)|(nil)/ig.test(e) ? null : e.trim())
     ;
     treeArray.unshift(null);
-    const root = new TreeNode(treeArray[1]);
+    var root = new TreeNode(treeArray[1]);
     treeFromArray(root, treeArray);
     return treeArray.length > 1 && treeArray[1] ? root : null;
   };
   
-  const arrayFromTree = (root, a=[], i=0) => {
+  function arrayFromTree(root, a=[], i=0) {
     if (root) {
       a[i] = root.val;
       arrayFromTree(root.left, a, i * 2 + 1);
@@ -134,7 +136,7 @@ const PrettyBT = (function () {
     return a;
   };
   
-  const treeFromArray = (root, a, i=1) => {
+  function treeFromArray(root, a, i=1) {
     if (root && i < a.length) {
       if (a[i*2]) {
         root.left = new TreeNode(a[i*2]);
@@ -149,11 +151,11 @@ const PrettyBT = (function () {
   };
 
   return {
-    treeFromArray, 
     arrayFromTree, 
-    treeFromString, 
     drawBinaryTree, 
-    randomTree
+    randomTree,
+    treeFromArray, 
+    treeFromString, 
   };
 })();
 

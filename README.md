@@ -15,12 +15,12 @@ simple binary tree visualizer
 
 var canvas = document.createElement("canvas");
 document.body.appendChild(canvas);
+
+var tree = {val: 1, left: {val: 2}, right: {val: 3}};
+  // or: PrettyBT.treeFromString("[a,b,c,,d]");
+
 var size = 15;
-PrettyBT.drawBinaryTree(
-  canvas,
-  PrettyBT.treeFromString("[a,b,c,,d]"), /* or pass JSON tree with val/left/right props */
-  size
-);
+PrettyBT.drawBinaryTree(canvas, tree, size);
 
 </script>
 </body>
