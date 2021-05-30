@@ -24,6 +24,8 @@ const PrettyBT = (function () {
   
     canvas.width = 2 ** depth * size + size * 2;
     canvas.height = depth * size * 4;
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.strokeStyle = "#666";
