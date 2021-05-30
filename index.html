@@ -14,36 +14,38 @@
       nodes or <a id="random-tree" href="javascript:void(0);">make a random tree</a>:
     </div>
     <div>[<input id="entry">] &nbsp; size: <input size=2 id="size" value="15"></div>
+    <canvas id="tree"></canvas>
 
     <script src="js/pbt.js"></script>
     <script>
-    
-      const clamp = (n, lo=7, hi=40) => Math.min(hi, Math.max(n, lo));
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      const sizeElem = document.querySelector("#size");
-      const entryElem = document.querySelector("#entry");
-      let root = randomTree();
-      entryElem.value = arrayFromTree(root).toString();
-      drawBinaryTree(root, ctx, canvas);
-      document.body.appendChild(canvas);
-      
-      document.querySelector("#random-tree").addEventListener("click", e => {
-        root = randomTree();
-        entryElem.value = arrayFromTree(root).toString();
-        drawBinaryTree(root, ctx, canvas, clamp(+sizeElem.value));
-      });
+ 
+(function () { 
+  const clamp = (n, lo=7, hi=40) => Math.min(hi, Math.max(n, lo));
+  const sizeElem = document.querySelector("#size");
+  const entryElem = document.querySelector("#entry");
+  const treeElem = document.querySelector("#tree");
 
-      entryElem.addEventListener("keyup", e => {
-        e.target.style.width = Math.max(e.target.value.length, 20) + "ch";
-        root = treeFromString(e.target.value);
-        drawBinaryTree(root, ctx, canvas, clamp(+sizeElem.value));
-      });
+  let root = PrettyBT.randomTree();
+  entryElem.value = PrettyBT.arrayFromTree(root).toString();
+  PrettyBT.drawBinaryTree(treeElem, root);
+  
+  document.querySelector("#random-tree").addEventListener("click", e => {
+    root = PrettyBT.randomTree();
+    entryElem.value = PrettyBT.arrayFromTree(root).toString();
+    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+  });
 
-      sizeElem.addEventListener("keyup", e => {
-        e.target.style.width = Math.max(e.target.value.length, 2) + "ch";
-        drawBinaryTree(root, ctx, canvas, clamp(+sizeElem.value));
-      });
+  entryElem.addEventListener("keyup", e => {
+    e.target.style.width = Math.max(e.target.value.length, 20) + "ch";
+    root = PrettyBT.treeFromString(e.target.value);
+    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+  });
+
+  sizeElem.addEventListener("keyup", e => {
+    e.target.style.width = Math.max(e.target.value.length, 2) + "ch";
+    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+  });
+})();
 
     </script>
   </body>
