@@ -10,7 +10,7 @@ simple binary tree visualizer
 <body>
 
 <!-- always use a specific commit hash -->
-<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@192a4b2/js/pbt.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@dd76716/js/pbt.js"></script>
 <script>
 
 var canvas = document.createElement("canvas");
