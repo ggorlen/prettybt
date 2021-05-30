@@ -11,10 +11,6 @@ simple binary tree visualizer
 
 <!-- always use a specific commit hash -->
 <script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@192a4b2/js/pbt.js"></script>
-
-<!-- or: -->
-<!--<script src="https://ggorlen.github.io/prettybt/js/pbt.js"></script>-->
-
 <script>
 
 var canvas = document.createElement("canvas");
