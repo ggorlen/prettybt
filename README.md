@@ -31,3 +31,4 @@ drawBinaryTree(
 - namespace functions
 - simplify params to `drawBinaryTree`, pass in non-canvas element?
 - make node lib/npm package?
+- support svg with [canvg](https://github.com/canvg/canvg)?
