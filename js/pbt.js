@@ -1,6 +1,6 @@
 "use strict";
 
-var PrettyBT = (function () {
+window.PrettyBT = (function () {
   function TreeNode(val, left, right) {
     this.val = val;
     this.left = left;
