@@ -13,7 +13,11 @@
       Enter binary tree as comma-delimited array with<br> `<code>null</code>` for absent
       nodes or <a id="random-tree" href="javascript:void(0);">make a random tree</a>:
     </div>
-    <div>[<input id="entry">] &nbsp; size: <input size=2 id="size" value="15"></div>
+    <div>
+      [<input id="entry">] &nbsp; 
+      size: <input size=2 id="size" value="15"> &nbsp;
+      night: <input id="night" type="checkbox">
+    </div>
     <canvas id="tree"></canvas>
 
     <script src="js/pbt.js"></script>
@@ -44,6 +48,14 @@
   sizeElem.addEventListener("keyup", e => {
     e.target.style.width = Math.max(e.target.value.length, 2) + "ch";
     PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+  });
+
+  document.querySelector("#night").addEventListener("click", () => {
+    document.body.style.cssText = document.body.style.cssText ? "" : `
+      -webkit-filter: invert(100%);
+      filter: invert(100%);
+      background-color: black;
+    `;
   });
 })();
 

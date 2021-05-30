@@ -1,6 +1,6 @@
 # prettybt
 
-binary tree visualizer
+simple binary tree visualizer
 
 ![binary trees](assets/trees.gif)
 
@@ -30,6 +30,6 @@ PrettyBT.drawBinaryTree(
 
 - handle sparse wide/deep trees better; find a way to squish 'em
 - support horizontal output
-- add light/dark color modes
-- make node lib/npm package
+- add light/dark color modes for the canvas instead of just CSS in the preview (for download purposes)
+- make node lib/npm package?
 - generate svg with [canvg](https://github.com/canvg/canvg)?
