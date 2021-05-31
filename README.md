@@ -30,6 +30,6 @@ PrettyBT.drawBinaryTree(canvas, tree, size);
 
 - handle sparse wide/deep trees better; find a way to squish 'em
 - support horizontal output
-- add light/dark color modes for the canvas instead of just CSS in the preview (for download purposes)
+- add light/dark color modes for the canvas instead of just CSS in the preview (for export purposes)
+- generate SVG with [canvas2svg](https://github.com/gliffy/canvas2svg/)
 - make node lib/npm package?
-- generate svg with [canvg](https://github.com/canvg/canvg)?
