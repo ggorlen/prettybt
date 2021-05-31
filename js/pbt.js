@@ -14,7 +14,7 @@ window.PrettyBT = (function () {
     ) : height
   };
   
-  function drawBinaryTree(canvas, root, size=15, background="#fff") {
+  function drawBinaryTree(canvas, root, size=15, background="rgba(0, 0, 0, 0)") {
     var ctx = canvas.getContext("2d");
     var depth = treeHeight(root);
     var level = [];
