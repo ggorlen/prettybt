@@ -35,16 +35,16 @@ PrettyBT.drawBinaryTree(canvas, tree, size);
 <script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@eac688e/js/pbt.js"></script>
 <script>
 
+var tree = PrettyBT.randomTree();
+var dimensions = PrettyBT.computeDimensions(tree);
 var canvas = (function () {
-  var ctx = new C2S(500, 500);
+  var ctx = new C2S(dimensions.width, dimensions.height);
   return {
     getContext: function () {
       return ctx;
     }
   };
 })();
-
-var tree = {val: 1, left: {val: 2}, right: {val: 3}};
 PrettyBT.drawBinaryTree(canvas, tree);
 
 var svg = document.createElement("div");
@@ -57,8 +57,8 @@ svg.outerHTML = canvas.getContext().getSerializedSvg();
 
 ### todo
 
+- make npm package
 - handle sparse wide/deep trees better; find a way to squish 'em
 - support horizontal output
 - add light/dark color modes for the canvas instead of just CSS in the preview (for export purposes)
-- make npm package
 

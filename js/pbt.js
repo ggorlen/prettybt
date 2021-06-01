@@ -1,4 +1,3 @@
-;
 "use strict";
 
 window.PrettyBT = (function () {
@@ -13,7 +12,15 @@ window.PrettyBT = (function () {
       treeHeight(root.left, height), 
       treeHeight(root.right, height)
     ) : height
-  };
+  }
+
+  function computeDimensions(root, size=15) {
+    var depth = treeHeight(root);
+    return {
+      width: 2 ** depth * size + size * 2,
+      height: depth * size * 4,
+    };
+  }
   
   function drawBinaryTree(
     canvas, 
@@ -103,7 +110,7 @@ window.PrettyBT = (function () {
         q.push([null, depth - 1]);
       }
     }
-  };
+  }
   
   function randomTree(min=3, max=15, maxVal=120) {
     var root = new TreeNode(~~(Math.random() * maxVal));
@@ -129,7 +136,7 @@ window.PrettyBT = (function () {
     }
   
     return root;
-  };
+  }
   
   function treeFromString(s) {
     var treeArray = s
@@ -151,7 +158,7 @@ window.PrettyBT = (function () {
     }
   
     return a;
-  };
+  }
   
   function treeFromArray(root, a, i=1) {
     if (root && i < a.length) {
@@ -165,10 +172,11 @@ window.PrettyBT = (function () {
         treeFromArray(root.right, a, i * 2 + 1);
       }
     }
-  };
+  }
 
   var PrettyBT = {
     arrayFromTree: arrayFromTree, 
+    computeDimensions: computeDimensions,
     drawBinaryTree: drawBinaryTree, 
     randomTree: randomTree,
     treeFromArray: treeFromArray, 
@@ -182,5 +190,3 @@ window.PrettyBT = (function () {
 
   return PrettyBT;
 })();
-
-;
