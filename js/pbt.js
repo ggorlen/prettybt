@@ -1,3 +1,4 @@
+;
 "use strict";
 
 window.PrettyBT = (function () {
@@ -14,7 +15,12 @@ window.PrettyBT = (function () {
     ) : height
   };
   
-  function drawBinaryTree(canvas, root, size=15, background="rgba(0, 0, 0, 0)") {
+  function drawBinaryTree(
+    canvas, 
+    root, 
+    size=15, 
+    background="rgba(0, 0, 0, 0)"
+  ) {
     var ctx = canvas.getContext("2d");
     var depth = treeHeight(root);
     var level = [];
@@ -47,14 +53,20 @@ window.PrettyBT = (function () {
             if (node.left) {
               ctx.beginPath();
               ctx.moveTo(x + 1, y + 1);
-              ctx.lineTo(x - 2 ** (depth + 1) * size / 4, y + size * 4 - 1);
+              ctx.lineTo(
+                x - 2 ** (depth + 1) * size / 4, 
+                y + size * 4 - 1
+              );
               ctx.stroke();
             }
   
             if (node.right) {
               ctx.beginPath();
               ctx.moveTo(x + 1, y + 1);
-              ctx.lineTo(x + 2 ** (depth + 1) * size / 4, y + size * 4 - 1);
+              ctx.lineTo(
+                x + 2 ** (depth + 1) * size / 4, 
+                y + size * 4 - 1
+              );
               ctx.stroke();
             }
   
@@ -65,7 +77,10 @@ window.PrettyBT = (function () {
             ctx.fillStyle = "#fff";
             ctx.fill();
             ctx.fillStyle = "#000";
-            ctx.font = "bold " + (size - ("" + node.val).length) + "px Courier New";
+            ctx.font = "bold " + 
+              (size - ("" + node.val).length) + 
+              "px Courier New"
+            ;
             ctx.fillText(node.val, x + 1, y + 1);
           }
   
@@ -104,10 +119,12 @@ window.PrettyBT = (function () {
       }
   
       if (!prev.left && !prev.right) {
-        prev[Math.random()>=0.5?"left":"right"] = new TreeNode(~~(Math.random() * maxVal));
+        var child = Math.random() >= 0.5 ? "left" : "right"
+        prev[child] = new TreeNode(~~(Math.random() * maxVal));
       }
       else {
-        prev[prev.left?"right":"left"] = new TreeNode(~~(Math.random() * maxVal));
+        var child = prev.left ? "right" : "left";
+        prev[child] = new TreeNode(~~(Math.random() * maxVal));
       }
     }
   
@@ -150,12 +167,20 @@ window.PrettyBT = (function () {
     }
   };
 
-  return {
-    arrayFromTree, 
-    drawBinaryTree, 
-    randomTree,
-    treeFromArray, 
-    treeFromString, 
+  var PrettyBT = {
+    arrayFromTree: arrayFromTree, 
+    drawBinaryTree: drawBinaryTree, 
+    randomTree: randomTree,
+    treeFromArray: treeFromArray, 
+    treeFromString: treeFromString, 
   };
+
+  if (typeof module === "object" && 
+      typeof module.exports === "object") {
+    module.exports = PrettyBT;
+  }
+
+  return PrettyBT;
 })();
 
+;

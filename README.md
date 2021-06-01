@@ -26,10 +26,39 @@ PrettyBT.drawBinaryTree(canvas, tree, size);
 </body>
 ```
 
+### making an SVG with [canvas2svg](https://github.com/gliffy/canvas2svg/)
+
+```html
+<body>
+
+<script src="https://cdn.jsdelivr.net/gh/gliffy/canvas2svg/canvas2svg.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@eac688e/js/pbt.js"></script>
+<script>
+
+var canvas = (function () {
+  var ctx = new C2S(500, 500);
+  return {
+    getContext: function () {
+      return ctx;
+    }
+  };
+})();
+
+var tree = {val: 1, left: {val: 2}, right: {val: 3}};
+PrettyBT.drawBinaryTree(canvas, tree);
+
+var svg = document.createElement("div");
+document.body.appendChild(svg);
+svg.outerHTML = canvas.getContext().getSerializedSvg();
+
+</script>
+</body>
+```
+
 ### todo
 
 - handle sparse wide/deep trees better; find a way to squish 'em
 - support horizontal output
 - add light/dark color modes for the canvas instead of just CSS in the preview (for export purposes)
-- generate SVG with [canvas2svg](https://github.com/gliffy/canvas2svg/)
-- make node lib/npm package?
+- make npm package
+
