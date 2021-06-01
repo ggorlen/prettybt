@@ -2,7 +2,7 @@
 
 Simple binary tree visualizer
 
-[Demo](ggorlen.github.io/prettybt/)
+[Demo](https://ggorlen.github.io/prettybt/)
 
 ![binary trees](assets/trees.gif)
 
@@ -59,7 +59,7 @@ svg.outerHTML = canvas.getContext().getSerializedSvg();
 </body>
 ```
 
-### NodeJS with [`canvas`](https://www.npmjs.com/package/canvas)
+### NodeJS with [canvas](https://www.npmjs.com/package/canvas)
 
 ```javascript
 const {createCanvas} = require("canvas");
