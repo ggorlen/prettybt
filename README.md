@@ -59,7 +59,6 @@ svg.outerHTML = canvas.getContext().getSerializedSvg();
 
 ## TODO
 
-- make npm package
 - handle sparse wide/deep trees better; find a way to squish 'em
 - support horizontal output
 - add light/dark color modes for the canvas instead of just CSS in the preview (for export purposes)
