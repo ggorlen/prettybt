@@ -4,7 +4,9 @@ simple binary tree visualizer
 
 ![binary trees](assets/trees.gif)
 
-### browser usage
+## Usage
+
+### Browser
 
 ```html
 <body>
@@ -26,13 +28,13 @@ PrettyBT.drawBinaryTree(canvas, tree, size);
 </body>
 ```
 
-### making an SVG with [canvas2svg](https://github.com/gliffy/canvas2svg/)
+### Making an SVG with [canvas2svg](https://github.com/gliffy/canvas2svg/)
 
 ```html
 <body>
 
 <script src="https://cdn.jsdelivr.net/gh/gliffy/canvas2svg@eaab317/canvas2svg.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@eac688e/js/pbt.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@bcdbe62/js/pbt.js"></script>
 <script>
 
 var tree = PrettyBT.randomTree();
@@ -55,7 +57,7 @@ svg.outerHTML = canvas.getContext().getSerializedSvg();
 </body>
 ```
 
-### todo
+## TODO
 
 - make npm package
 - handle sparse wide/deep trees better; find a way to squish 'em
