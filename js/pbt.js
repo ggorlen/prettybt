@@ -1,6 +1,6 @@
-"use strict";
+;(function () {
+  "use strict";
 
-window.PrettyBT = (function () {
   function TreeNode(val, left, right) {
     this.val = val;
     this.left = left;
@@ -188,5 +188,7 @@ window.PrettyBT = (function () {
     module.exports = PrettyBT;
   }
 
-  return PrettyBT;
+  if (typeof window === "object") {
+    window.PrettyBT = PrettyBT;
+  }
 })();
