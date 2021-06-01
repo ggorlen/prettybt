@@ -1,6 +1,8 @@
 # prettybt
 
-simple binary tree visualizer
+Simple binary tree visualizer
+
+[Demo](ggorlen.github.io/prettybt/)
 
 ![binary trees](assets/trees.gif)
 
@@ -55,5 +57,17 @@ svg.outerHTML = canvas.getContext().getSerializedSvg();
 
 </script>
 </body>
+```
+
+### NodeJS with [`canvas`](https://www.npmjs.com/package/canvas)
+
+```javascript
+const {createCanvas} = require("canvas");
+const PrettyBT = require("prettybt");
+
+const canvas = createCanvas();
+const tree = PrettyBT.randomTree();
+PrettyBT.drawBinaryTree(canvas, tree);
+console.log('<img src="' + canvas.toDataURL() + '" />');
 ```
 
