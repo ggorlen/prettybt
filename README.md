@@ -31,7 +31,7 @@ PrettyBT.drawBinaryTree(canvas, tree, size);
 ```html
 <body>
 
-<script src="https://cdn.jsdelivr.net/gh/gliffy/canvas2svg/canvas2svg.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gliffy/canvas2svg@eaab317/canvas2svg.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@eac688e/js/pbt.js"></script>
 <script>
 
