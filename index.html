@@ -19,47 +19,83 @@
         size: <input size=2 id="size" value="15"> &nbsp;
         night: <input id="night" type="checkbox">
       </div>
+      <div>
+        background: <input size=7 id="background" value="#ffffff"> &nbsp;
+        strokeStyle: <input size=7 id="strokeStyle" value="#666666">
+      </div>
     </div>
     <canvas id="tree"></canvas>
     <script src="js/pbt.js"></script>
     <script>
  
 (function () { 
+  let mode = {
+    background:document.querySelector('#background').value,
+    strokeStyle:document.querySelector('#strokeStyle').value,
+  }
   const clamp = (n, lo=7, hi=40) => Math.min(hi, Math.max(n, lo));
   const sizeElem = document.querySelector("#size");
   const entryElem = document.querySelector("#entry");
   const treeElem = document.querySelector("#tree");
+  const backgroundElem = document.querySelector("#background");
+  const strokeStyleElem = document.querySelector("#strokeStyle");
 
   let root = PrettyBT.randomTree();
   entryElem.value = PrettyBT.arrayFromTree(root).toString();
-  PrettyBT.drawBinaryTree(treeElem, root);
+  PrettyBT.drawBinaryTree(treeElem, root, 15, mode);
   
   document.querySelector("#random-tree").addEventListener("click", e => {
     root = PrettyBT.randomTree();
     entryElem.value = PrettyBT.arrayFromTree(root).toString();
-    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value), mode);
   });
 
   entryElem.addEventListener("keyup", e => {
     e.target.style.width = Math.max(e.target.value.length, 20) + "ch";
     root = PrettyBT.treeFromString(e.target.value);
-    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value), mode);
   });
 
   sizeElem.addEventListener("keyup", e => {
     e.target.style.width = Math.max(e.target.value.length, 2) + "ch";
-    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value), mode);
+  });
+
+  backgroundElem.addEventListener("keyup", e => {
+    e.target.style.width = Math.max(e.target.value.length, 7) + "ch";
+    mode.background = e.target.value;
+    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value), mode);
+  });
+
+  strokeStyleElem.addEventListener("keyup", e => {
+    e.target.style.width = Math.max(e.target.value.length, 7) + "ch";
+    mode.strokeStyle = e.target.value;
+    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value), mode);
   });
 
   document.querySelector("#night").addEventListener("click", () => {
     const night = document.querySelector("#night").checked;
-    document.body.classList.toggle("night");
 
-    PrettyBT.toggleNight(night);
-    PrettyBT.drawBinaryTree(treeElem, root);
+    document.body.classList.toggle("night", night);
+    // Invert current color
+    mode.background = getInvertColor(mode.background);
+    mode.strokeStyle = getInvertColor(mode.strokeStyle);
+
+    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value), mode);
   });
 })();
 
+function getInvertColor(color) {  
+  let r = parseInt(color.substr(1,2),16);
+  let g = parseInt(color.substr(3,2),16);
+  let b = parseInt(color.substr(5,2),16);
+
+  r = (255 - r).toString(16);
+  g = (255 - g).toString(16);
+  b = (255 - b).toString(16);
+
+  return "#" + (r.length < 2 ? "0" + r : r) + (g.length < 2 ? "0" + g : g) + (b.length < 2 ? "0" + b : b);
+}
     </script>
   </body>
 </html>
