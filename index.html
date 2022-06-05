@@ -67,11 +67,19 @@
 
   backgroundElem.addEventListener("keyup", e => {
     mode.background = validCompleteHexadecimalColor(e.target.value) ? e.target.value : '#ffffff';
+
+    if (document.querySelector('#night').checked) {
+      mode.background = getInvertColor(mode.background);
+    }
     PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value), mode);
   });
 
   strokeStyleElem.addEventListener("keyup", e => {
     mode.strokeStyle = validCompleteHexadecimalColor(e.target.value) ? e.target.value : '#666666';
+
+    if (document.querySelector('#night').checked) {
+      mode.strokeStyle = getInvertColor(mode.strokeStyle);
+    }
     PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value), mode);
   });
 
