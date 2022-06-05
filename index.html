@@ -30,8 +30,8 @@
  
 (function () { 
   let mode = {
-    background:document.querySelector('#background').value,
-    strokeStyle:document.querySelector('#strokeStyle').value,
+    background:document.querySelector('#background').value || '#ffffff',
+    strokeStyle:document.querySelector('#strokeStyle').value || '#666666',
   }
   const clamp = (n, lo=7, hi=40) => Math.min(hi, Math.max(n, lo));
   const sizeElem = document.querySelector("#size");
