@@ -52,11 +52,8 @@
   });
 
   document.querySelector("#night").addEventListener("click", () => {
-    document.body.style.cssText = document.body.style.cssText ? "" : `
-      -webkit-filter: invert(100%);
-      filter: invert(100%);
-      background-color: black;
-    `;
+    PrettyBT.toggleNight(document.querySelector("#night").checked);
+    PrettyBT.drawBinaryTree(treeElem, root);
   });
 })();
 

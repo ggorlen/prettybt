@@ -1,5 +1,11 @@
 ;(function () {
   "use strict";
+  
+  var night = false;
+  
+  function toggleNight(night){
+    this.night = night;      
+  }
 
   function TreeNode(val, left, right) {
     this.val = val;
@@ -26,7 +32,7 @@
     canvas, 
     root, 
     size=15, 
-    background="rgba(0, 0, 0, 0)"
+    background = this.night ? "black" : "rgba(0,0,0,0)",
   ) {
     var ctx = canvas.getContext("2d");
     var depth = treeHeight(root);
@@ -41,7 +47,7 @@
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.strokeStyle = "#666";
+    ctx.strokeStyle = this.night ? "#fff" : "#666";
     ctx.lineWidth = 2;
     
     while (depth >= 0) {
@@ -180,7 +186,8 @@
     drawBinaryTree: drawBinaryTree, 
     randomTree: randomTree,
     treeFromArray: treeFromArray, 
-    treeFromString: treeFromString, 
+    treeFromString: treeFromString,
+    toggleNight: toggleNight
   };
 
   if (typeof module === "object" && 
