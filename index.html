@@ -8,19 +8,19 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-
-    <div>
-      [<a href="https://www.github.com/ggorlen/prettybt">prettybt</a>]
-      Enter binary tree as comma-delimited array with<br> `<code>null</code>` for absent
-      nodes or <a id="random-tree" href="javascript:void(0);">make a random tree</a>:
-    </div>
-    <div>
-      [<input id="entry">] &nbsp; 
-      size: <input size=2 id="size" value="15"> &nbsp;
-      night: <input id="night" type="checkbox">
+    <div id="main">
+      <div>
+        [<a href="https://www.github.com/ggorlen/prettybt">prettybt</a>]
+        Enter binary tree as comma-delimited array with<br> `<code>null</code>` for absent
+        nodes or <a id="random-tree" href="javascript:void(0);">make a random tree</a>:
+      </div>
+      <div>
+        [<input id="entry">] &nbsp; 
+        size: <input size=2 id="size" value="15"> &nbsp;
+        night: <input id="night" type="checkbox">
+      </div>
     </div>
     <canvas id="tree"></canvas>
-
     <script src="js/pbt.js"></script>
     <script>
  
@@ -52,7 +52,10 @@
   });
 
   document.querySelector("#night").addEventListener("click", () => {
-    PrettyBT.toggleNight(document.querySelector("#night").checked);
+    const night = document.querySelector("#night").checked;
+    document.body.classList.toggle("night");
+
+    PrettyBT.toggleNight(night);
     PrettyBT.drawBinaryTree(treeElem, root);
   });
 })();

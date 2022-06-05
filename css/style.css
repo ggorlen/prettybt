@@ -32,3 +32,12 @@ input {
   outline: 0;
   font-size: 1.1em;
 }
+
+.night {
+  background-color: #000;
+}
+
+.night #main {
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
