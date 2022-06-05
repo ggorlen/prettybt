@@ -34,6 +34,7 @@
     var x = size;
     var y = size * 2;
     var q = [[root, depth, null]];
+    console.log(mode)
   
     canvas.width = 2 ** depth * size + size * 2;
     canvas.height = depth * size * 4;
