@@ -33,15 +33,15 @@
   const sizeElem = document.querySelector("#size");
   const entryElem = document.querySelector("#entry");
   const treeElem = document.querySelector("#tree");
-  let backgroundElem = document.querySelector("#background");
-  let strokeStyleElem = document.querySelector("#strokeStyle");
+  const backgroundElem = document.querySelector("#background");
+  const strokeStyleElem = document.querySelector("#strokeStyle");
 
-  let background = backgroundElem.value
-  let strokeStyle = strokeStyleElem.value
+  const background = backgroundElem.value
+  const strokeStyle = strokeStyleElem.value
 
   let mode = {  
-    background:document.querySelector('#background').value || '#ffffff',
-    strokeStyle:document.querySelector('#strokeStyle').value || '#666666',
+    background: background || '#ffffff',
+    strokeStyle: strokeStyle || '#666666',
   }
 
   let root = PrettyBT.randomTree();
@@ -96,7 +96,6 @@
 })();
 
 function getInvertColor (color) {  
-  console.log(color)
   let r = parseInt(color.substr(1,2),16);
   let g = parseInt(color.substr(3,2),16);
   let b = parseInt(color.substr(5,2),16);
