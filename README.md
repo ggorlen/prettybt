@@ -61,7 +61,7 @@ svg.outerHTML = canvas.getContext().getSerializedSvg();
 ### NodeJS with [canvas](https://www.npmjs.com/package/canvas)
 
 ```javascript
-const {createCanvas} = require("canvas");
+const {createCanvas} = require("canvas"); // tested with 2.11.2
 const PrettyBT = require("prettybt");
 
 const canvas = createCanvas();
