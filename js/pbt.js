@@ -22,7 +22,7 @@
     };
   }
   
-  function drawBinaryTree(canvas, root, opts) {
+  function drawBinaryTree(canvas, root, opts={}) {
     var size = opts.size || 15;
     var background = opts.background || "rgba(0, 0, 0, 0)";
     var nodeColor = opts.nodeColor || "#fff";
