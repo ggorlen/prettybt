@@ -8,55 +8,79 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-
-    <div>
-      [<a href="https://www.github.com/ggorlen/prettybt">prettybt</a>]
+    <h4><a href="https://www.github.com/ggorlen/prettybt">prettybt</a></h4>
+    <p>
       Enter binary tree as comma-delimited array with<br> `<code>null</code>` for absent
       nodes or <a id="random-tree" href="javascript:void(0);">make a random tree</a>:
-    </div>
-    <div>
-      [<input id="entry">] &nbsp; 
-      size: <input size=2 id="size" value="15"> &nbsp;
-      night: <input id="night" type="checkbox">
+    </p>
+    <div class="input-wrapper">
+      <div><label>[<input id="entry">]</label></div>
+      <div><label>size: <input size="2" id="size" value="17"></label></div>
+      <div><label>night: <input id="night" type="checkbox"></label></div>
     </div>
     <canvas id="tree"></canvas>
 
     <script src="js/pbt.js"></script>
     <script>
- 
-(function () { 
+
+(function () {
+  const light = "#f5f5f5";
+  const dark = "#252525";
+
   const clamp = (n, lo=7, hi=40) => Math.min(hi, Math.max(n, lo));
+
+  const drawTree = () => {
+    PrettyBT.drawBinaryTree(treeElem, root, {
+      size: clamp(+sizeElem.value),
+      background: night ? dark : light,
+      nodeColor: night ? dark : light,
+      textColor: night ? light : dark,
+      strokeColor: "#777",
+    });
+  };
+
+  const toggleNight = () =>  {
+    document.documentElement.classList.toggle("dark");
+  };
+
   const sizeElem = document.querySelector("#size");
   const entryElem = document.querySelector("#entry");
   const treeElem = document.querySelector("#tree");
+  const nightElem = document.querySelector("#night");
+  let night = nightElem.checked;
 
-  let root = PrettyBT.randomTree();
-  entryElem.value = PrettyBT.arrayFromTree(root).toString();
-  PrettyBT.drawBinaryTree(treeElem, root);
-  
+  if (night) {
+    toggleNight();
+  }
+
+  let root = entryElem.value
+    ? PrettyBT.treeFromString(entryElem.value)
+    : PrettyBT.randomTree();
+  entryElem.value =
+    entryElem.value || PrettyBT.arrayFromTree(root).toString();
+  drawTree();
+
   document.querySelector("#random-tree").addEventListener("click", e => {
     root = PrettyBT.randomTree();
     entryElem.value = PrettyBT.arrayFromTree(root).toString();
-    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+    drawTree();
   });
 
   entryElem.addEventListener("keyup", e => {
     e.target.style.width = Math.max(e.target.value.length, 20) + "ch";
     root = PrettyBT.treeFromString(e.target.value);
-    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+    drawTree();
   });
 
   sizeElem.addEventListener("keyup", e => {
     e.target.style.width = Math.max(e.target.value.length, 2) + "ch";
-    PrettyBT.drawBinaryTree(treeElem, root, clamp(+sizeElem.value));
+    drawTree();
   });
 
-  document.querySelector("#night").addEventListener("click", () => {
-    document.body.style.cssText = document.body.style.cssText ? "" : `
-      -webkit-filter: invert(100%);
-      filter: invert(100%);
-      background-color: black;
-    `;
+  nightElem.addEventListener("click", e => {
+    night = e.target.checked;
+    toggleNight();
+    drawTree();
   });
 })();
 

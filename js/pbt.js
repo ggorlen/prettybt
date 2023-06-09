@@ -6,7 +6,7 @@
     this.left = left;
     this.right = right;
   }
-  
+ 
   function treeHeight(root, height=0) {
     return root ? 1 + Math.max(
       treeHeight(root.left, height), 
@@ -22,28 +22,29 @@
     };
   }
   
-  function drawBinaryTree(
-    canvas, 
-    root, 
-    size=15, 
-    background="rgba(0, 0, 0, 0)"
-  ) {
+  function drawBinaryTree(canvas, root, opts) {
+    var size = opts.size || 15;
+    var background = opts.background || "rgba(0, 0, 0, 0)";
+    var nodeColor = opts.nodeColor || "#fff";
+    var textColor = opts.textColor || "#000";
+    var strokeColor = opts.strokeColor || "#777";
+
     var ctx = canvas.getContext("2d");
     var depth = treeHeight(root);
     var level = [];
     var x = size;
     var y = size * 2;
     var q = [[root, depth, null]];
-  
+
     canvas.width = 2 ** depth * size + size * 2;
     canvas.height = depth * size * 4;
     ctx.fillStyle = background;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.strokeStyle = "#666";
+    ctx.strokeStyle = strokeColor;
     ctx.lineWidth = 2;
-    
+
     while (depth >= 0) {
       var node = q.shift();
       var currNode = node[0];
@@ -81,13 +82,11 @@
             ctx.beginPath();
             ctx.arc(x + 1, y + 1, size - 2, 0, 2 * Math.PI);
             ctx.stroke();
-            ctx.fillStyle = "#fff";
+            ctx.fillStyle = nodeColor;
             ctx.fill();
-            ctx.fillStyle = "#000";
-            ctx.font = "bold " + 
-              (size - ("" + node.val).length) + 
-              "px Courier New"
-            ;
+            ctx.fillStyle = textColor;
+            var px = size - ("" + node.val).length;
+            ctx.font = "bold " + px + "px monospace";
             ctx.fillText(node.val, x + 1, y + 1);
           }
   
