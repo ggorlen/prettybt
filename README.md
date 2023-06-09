@@ -23,8 +23,7 @@ document.body.appendChild(canvas);
 var tree = {val: 1, left: {val: 2}, right: {val: 3}};
 // or: var tree = PrettyBT.treeFromString("[a,b,c,,d]");
 
-var size = 15;
-PrettyBT.drawBinaryTree(canvas, tree, size);
+PrettyBT.drawBinaryTree(canvas, tree, {size: 17});
 
 </script>
 </body>
@@ -36,7 +35,7 @@ PrettyBT.drawBinaryTree(canvas, tree, size);
 <body>
 
 <script src="https://cdn.jsdelivr.net/gh/gliffy/canvas2svg@eaab317/canvas2svg.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@8ad0935/js/pbt.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@4c885c6/js/pbt.js"></script>
 <script>
 
 var tree = PrettyBT.randomTree();
@@ -68,6 +67,6 @@ const PrettyBT = require("prettybt");
 const canvas = createCanvas();
 const tree = PrettyBT.randomTree();
 PrettyBT.drawBinaryTree(canvas, tree);
-console.log('<img src="' + canvas.toDataURL() + '" />');
+console.log(`<img src="${canvas.toDataURL()}" />`);
 ```
 

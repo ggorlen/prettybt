@@ -1,16 +1,31 @@
+:root {
+  --color-bg: #f5f5f5;
+  --color-fg: #252525;
+}
+:root.dark {
+  --color-bg: #252525;
+  --color-fg: #f5f5f5;
+}
+
 * {
   font-family: monospace;
 }
 
 body {
-  margin: 0;
   display: flex;
   flex-direction: column;
-  padding: 1em;
+  align-items: center;
+  padding: 2em;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }
 
-div {
-  margin: 0.6em auto;
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--color-fg);
 }
 
 canvas {
@@ -28,7 +43,37 @@ canvas {
 input {
   transition: all 0.05s;
   border: 0px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--color-fg);;
   outline: 0;
   font-size: 1.1em;
+  background-color: var(--color-bg);
+  accent-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+.input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.input-wrapper > * {
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+@media (max-width: 600px) {
+  body {
+    display: block;
+  }
+
+  .input-wrapper {
+    display: block;
+  }
+  .input-wrapper > * {
+    padding: 0em;
+    margin: 0em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
 }
