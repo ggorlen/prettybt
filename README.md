@@ -14,7 +14,7 @@ Simple binary tree visualizer
 <body>
 
 <!-- always use a specific commit hash -->
-<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@f55c8c5/js/pbt.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@f55c8c5/js/pbt.min.js"></script>
 <script>
 
 var canvas = document.createElement("canvas");
@@ -34,8 +34,8 @@ PrettyBT.drawBinaryTree(canvas, tree, {size: 17});
 ```html
 <body>
 
-<script src="https://cdn.jsdelivr.net/gh/gliffy/canvas2svg@eaab317/canvas2svg.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@f55c8c5/js/pbt.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gliffy/canvas2svg@eaab317/canvas2svg.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ggorlen/prettybt@f55c8c5/js/pbt.min.js"></script>
 <script>
 
 var tree = PrettyBT.randomTree();
